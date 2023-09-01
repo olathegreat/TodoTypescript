@@ -1,22 +1,51 @@
-import React from "react";
+import React, {useState} from "react";
 import "./EditTask.css";
 
 
 interface CallToActionProps {
   cardDisplaySetter: (dataPassed: string) => void;
+  handleEditTodo: (dataPassed: Todo) => void;
+  todoClicked: Todo;
+  
 }
 
-const EditTaskCard: React.FC<CallToActionProps> = ({cardDisplaySetter}) => {
+interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+interface NewTodo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+const EditTaskCard: React.FC<CallToActionProps> = ({todoClicked, handleEditTodo, cardDisplaySetter}) => {
+  const[editedTodo, setEditedTodo] = useState<NewTodo>(todoClicked)
+
+  const editFormSubmit= (e:React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault();
+    if(editedTodo.title!== ""){
+      handleEditTodo(editedTodo);
+      cardDisplaySetter("calendar")
+    }else{
+      alert("todo cannot be empty")
+    }
+
+  }
   return (
     <div className="add-task">
-      <form>
+      <form onSubmit={(e)=>editFormSubmit(e)}>
         <div className="task-header">
           <h4>Edit Task</h4>
 
           <img src="/images/close.png" alt="cancel" className="cancel-image"/>
         </div>
 
-        <textarea value="create wireframe"></textarea>
+        <textarea value={editedTodo.title} onChange={(e)=>setEditedTodo({...editedTodo, title:e.target.value})}></textarea>
 
         <div className="button-wrapper">
           <button>
@@ -58,7 +87,7 @@ const EditTaskCard: React.FC<CallToActionProps> = ({cardDisplaySetter}) => {
            
           </button>
 
-          <button className="active">
+          <button className="active" type="submit">
             <span>Save</span>
            
           </button>

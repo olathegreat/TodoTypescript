@@ -14,6 +14,8 @@ import AddTaskCard from './components/AddTaskCard/AddTaskCard';
 import EditTaskCard from './components/EditTask/EditTaskCard';
 import DeleteTaskCard from './components/DeleteTask/DeleteTaskCard';
 
+const LOCAL_STORAGE_KEY = "react-todo-list-todos";
+
 interface Todo {
   userId: number;
   id: number;
@@ -28,14 +30,29 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 const App: React.FC = () => {
   const [value, onChange] = useState<Value>(new Date());
 
+  
+
   const [todos, setTodos] = useState<Todo[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [todosPerPage] = useState<number>(10);
+  const [todoClicked, setTodoClicked] = useState<Todo>({
+    userId: 0,
+    id: 0,
+    title: "",
+    completed: false,
+  })
 
   const [cardDisplay, setCardDisplay] = useState<string>("calendar")
 
+ const cardClicked = (data:Todo) =>{
+
+  setTodoClicked(data);
+
+ }
+
   useEffect(() => {
-      fetchTodos();
+  fetchTodos();
+     
     }, []);
   
     const fetchTodos = async () => {
@@ -48,7 +65,8 @@ const App: React.FC = () => {
     };
 
     const handleAddTodo = (newTodo: Todo) => {
-      setTodos([...todos, newTodo]);
+      setTodos([ newTodo,...todos]);
+      
     };
 
     const cardDisplaySetter =  (dataPassed:string) =>{
@@ -94,6 +112,7 @@ const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
           <MyTasks
              todos={currentTodos}
              onEditTodo={handleEditTodo}
+             cardClicked = {cardClicked}
              onDeleteTodo={handleDeleteTodo}
              cardDisplaySetter={cardDisplaySetter}
           />
@@ -112,15 +131,27 @@ const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
           }
 
           {
-            cardDisplay === "add" &&  <AddTaskCard cardDisplaySetter={cardDisplaySetter}/>
+            cardDisplay === "add" &&  <AddTaskCard 
+                                         cardDisplaySetter={cardDisplaySetter}
+                                         handleAddTodo={handleAddTodo}
+                                         todos={todos}
+                                         />
           }
 
           {
-            cardDisplay === "edit" &&    <EditTaskCard cardDisplaySetter={cardDisplaySetter}/>
+            cardDisplay === "edit" &&    <EditTaskCard
+                                  cardDisplaySetter={cardDisplaySetter}
+                                  handleEditTodo={handleEditTodo}
+                                  todoClicked = {todoClicked}
+                                  />
           }
 
           {
-            cardDisplay === "delete" &&  <DeleteTaskCard/>
+            cardDisplay === "delete" &&  <DeleteTaskCard
+            cardDisplaySetter={cardDisplaySetter}
+                              
+                                  todoClicked = {todoClicked}
+                                            handleDeleteTodo={handleDeleteTodo}/>
           }
         
           

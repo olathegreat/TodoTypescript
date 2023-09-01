@@ -14,11 +14,12 @@ interface Todo {
 interface TodoTableProps {
     todos: Todo[];
     onEditTodo: (editedTodo: Todo) => void;
+    cardClicked: (dataPassed: Todo) =>void;
     onDeleteTodo: (todoId: number) => void;
     cardDisplaySetter: (dataPassed: string) => void;
   }
 
-const MyTasks : React.FC<TodoTableProps> = ({ todos, onEditTodo,cardDisplaySetter, onDeleteTodo }) => {
+const MyTasks : React.FC<TodoTableProps> = ({ cardClicked, todos, onEditTodo,cardDisplaySetter, onDeleteTodo }) => {
 
    const [numberSelect, setNumberSelect] = useState<number>(-1);
    const [ itemSelected, setItemSelected] = useState<object>({});
@@ -33,6 +34,12 @@ const MyTasks : React.FC<TodoTableProps> = ({ todos, onEditTodo,cardDisplaySette
       console.log(itemSelected)
    
 
+
+   }
+
+   const detailsClicked = (todo: Todo) =>{
+    cardDisplaySetter("delete");
+    cardClicked(todo);
 
    }
    
@@ -52,7 +59,7 @@ const MyTasks : React.FC<TodoTableProps> = ({ todos, onEditTodo,cardDisplaySette
                             <img src="/images/tick.png" style={{display: todo.completed ? "block" : "none" }}/>
                         </div>
 
-                        <div className={`task-details ${todo.completed && "marked-class"}`} onClick={()=>cardDisplaySetter("edit")}>
+                        <div className={`task-details ${todo.completed && "marked-class"}`} onClick={()=>detailsClicked(todo)}>
                             <h4> {todo.title}</h4>
                             <p>12.30pm - 1.30pm</p>
 

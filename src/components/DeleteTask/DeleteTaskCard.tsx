@@ -2,7 +2,36 @@ import React from "react";
 import "./DeleteTask.css";
 
 
-const DeleteTaskCard = () => {
+interface CallToActionProps {
+ 
+  handleDeleteTodo: (dataPassed: number) => void;
+  cardDisplaySetter: (dataPassed: string) => void;
+  todoClicked: Todo;
+}
+
+interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+interface NewTodo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+
+const DeleteTaskCard: React.FC<CallToActionProps> = ({todoClicked, cardDisplaySetter,handleDeleteTodo}) => {
+  
+  const deleteTodo = () =>{
+
+    handleDeleteTodo(todoClicked.id);
+    cardDisplaySetter("calendar")
+
+  }
   return (
     <div className="delete-task">
       
@@ -14,7 +43,7 @@ const DeleteTaskCard = () => {
 
         <div className="task-details">
 
-          <h4>Create Wireframe</h4>
+          <h4>{todoClicked.title}</h4>
 
           <div className="task-details-line">
             <img src="/images/bluecalendar.png" alt="date"/>
@@ -37,12 +66,12 @@ const DeleteTaskCard = () => {
 
         <div className="action-buttons">
 
-        <button className="cancel" style={{border:"1px solid gray"}}>
+        <button className="cancel" style={{border:"1px solid gray"}} onClick={deleteTodo}>
             <span >Delete</span>
            
           </button>
 
-          <button className="active">
+          <button className="active" onClick={()=>cardDisplaySetter("edit")}>
             <span>Edit</span>
            
           </button>
