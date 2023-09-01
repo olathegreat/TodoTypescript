@@ -10,6 +10,9 @@ import TimeLine from './components/Timeline/TimeLine';
 import MyTasks from './components/MyTasks/MyTasks';
 import Pagination from './components/Pagination/Pagination';
 import './App.css';
+import AddTaskCard from './components/AddTaskCard/AddTaskCard';
+import EditTaskCard from './components/EditTask/EditTaskCard';
+import DeleteTaskCard from './components/DeleteTask/DeleteTaskCard';
 
 interface Todo {
   userId: number;
@@ -29,6 +32,8 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [todosPerPage] = useState<number>(10);
 
+  const [cardDisplay, setCardDisplay] = useState<string>("calendar")
+
   useEffect(() => {
       fetchTodos();
     }, []);
@@ -45,6 +50,10 @@ const App: React.FC = () => {
     const handleAddTodo = (newTodo: Todo) => {
       setTodos([...todos, newTodo]);
     };
+
+    const cardDisplaySetter =  (dataPassed:string) =>{
+      setCardDisplay(dataPassed);
+    }
   
     const handleEditTodo = (editedTodo: Todo) => {
       const updatedTodos = todos.map(todo => (todo.id === editedTodo.id ? editedTodo : todo));
@@ -72,7 +81,7 @@ const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
       {/* call to action section */}
 
-      <CallToAction/>
+      <CallToAction cardDisplaySetter={cardDisplaySetter}/>
 
 
       {/* section for todo tasks */}
@@ -86,6 +95,7 @@ const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
              todos={currentTodos}
              onEditTodo={handleEditTodo}
              onDeleteTodo={handleDeleteTodo}
+             cardDisplaySetter={cardDisplaySetter}
           />
                 <Pagination
         todosPerPage={todosPerPage}
@@ -97,7 +107,25 @@ const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
         </section>
 
         <aside>
-          <Calendar onChange={onChange} value={value} />
+          {
+            cardDisplay === "calendar" &&  <Calendar onChange={onChange} value={value} />
+          }
+
+          {
+            cardDisplay === "add" &&  <AddTaskCard cardDisplaySetter={cardDisplaySetter}/>
+          }
+
+          {
+            cardDisplay === "edit" &&    <EditTaskCard cardDisplaySetter={cardDisplaySetter}/>
+          }
+
+          {
+            cardDisplay === "delete" &&  <DeleteTaskCard/>
+          }
+        
+          
+        
+         
 
         </aside>
       </main>

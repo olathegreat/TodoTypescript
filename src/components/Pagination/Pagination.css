@@ -31,3 +31,20 @@
     overflow: hidden;
   }
 
+  @media screen and (max-width: 450px) {
+    /* .call-to-action button{
+      display: none;
+    } */
+    .pagination{
+      padding-left: 0;
+      margin-left: 32px;
+      padding-right: 0;
+      margin-right: 32px;
+      max-width: 85vw;
+    }
+.pagination button{
+        padding-left: 0;
+    }
+    
+  }
+

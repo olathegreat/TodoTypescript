@@ -15,9 +15,10 @@ interface TodoTableProps {
     todos: Todo[];
     onEditTodo: (editedTodo: Todo) => void;
     onDeleteTodo: (todoId: number) => void;
+    cardDisplaySetter: (dataPassed: string) => void;
   }
 
-const MyTasks : React.FC<TodoTableProps> = ({ todos, onEditTodo, onDeleteTodo }) => {
+const MyTasks : React.FC<TodoTableProps> = ({ todos, onEditTodo,cardDisplaySetter, onDeleteTodo }) => {
 
    const [numberSelect, setNumberSelect] = useState<number>(-1);
    const [ itemSelected, setItemSelected] = useState<object>({});
@@ -51,7 +52,7 @@ const MyTasks : React.FC<TodoTableProps> = ({ todos, onEditTodo, onDeleteTodo })
                             <img src="/images/tick.png" style={{display: todo.completed ? "block" : "none" }}/>
                         </div>
 
-                        <div className={`task-details ${todo.completed && "marked-class"}`}>
+                        <div className={`task-details ${todo.completed && "marked-class"}`} onClick={()=>cardDisplaySetter("edit")}>
                             <h4> {todo.title}</h4>
                             <p>12.30pm - 1.30pm</p>
 

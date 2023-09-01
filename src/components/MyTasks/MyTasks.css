@@ -14,6 +14,12 @@
 .my-tasks h4{
     margin: 0;
     margin-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 50vw;
+
+
 
 }
 .task-card{
@@ -41,6 +47,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     border: 1px solid gray;
 }
 .card-left{
@@ -48,3 +55,19 @@
     gap: 10px;
     align-items: center;
 }
+.card-left .task-details{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+    /* .call-to-action button{
+      display: none;
+    } */
+    .my-tasks{
+      padding-left: 0;
+      margin-left: 32px;
+      padding-right: 0;
+      margin-right: 32px;
+    }
+    
+  }

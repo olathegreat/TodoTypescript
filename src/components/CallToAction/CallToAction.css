@@ -43,6 +43,11 @@
     .call-to-action button{
       display: none;
     }
-  
+    .call-to-action{
+      padding-left: 0;
+      margin-left: 32px;
+      padding-right: 0;
+      margin-right: 32px;
+    }
     
   }

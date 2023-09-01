@@ -16,8 +16,8 @@
     display: flex;
     width: 842px;
     height: auto;
-    justify-content: space-evenly;
-    gap: 10px;
+    justify-content: space-between;
+    
   }
   .day-card{
     display: flex;
@@ -36,4 +36,25 @@
   .active-daycard{
     background-color: #3f5bf6 ;
     color: white;
+  }
+
+  @media screen and (max-width: 450px) {
+    /* .call-to-action button{
+      display: none;
+    } */
+    .timeline{
+      padding-left: 0;
+      margin-left: 32px;
+      padding-right: 0;
+      margin-right: 32px;
+      
+    }
+    .days-flex{
+      width: 80vw;
+      overflow: scroll;
+      justify-content: start;
+      
+      
+    }
+    
   }

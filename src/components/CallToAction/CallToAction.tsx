@@ -1,6 +1,16 @@
 import React from 'react'
 import "./CallToAction.css"
-const CallToAction = () => {
+
+// interface ChildComponentProps {
+//   cardDisplaySetter: () => void;
+// }
+interface CallToActionProps {
+  cardDisplaySetter: (dataPassed: string) => void;
+}
+
+const CallToAction: React.FC<CallToActionProps> = ({cardDisplaySetter}) => {
+
+
   return (
     <section className='call-to-action'>
 
@@ -12,10 +22,10 @@ const CallToAction = () => {
         </div>
 
         <div className='right'>
-          <button >
+          <button onClick={()=>cardDisplaySetter("add")}>
 
             <img src='/images/plus.png' alt='plus-button'/>
-            <span>Create New Task</span>
+            <span >Create New Task</span>
 
           </button>
 
