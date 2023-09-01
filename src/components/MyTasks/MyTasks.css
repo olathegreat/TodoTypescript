@@ -4,7 +4,7 @@
     margin-right: 30px;
     margin-bottom: 24px;
     padding-left: 32px;
-    padding-right: 32px;
+    
 }
 .my-tasks h3{
     margin: 0;
@@ -22,6 +22,14 @@
 
 
 }
+.tasklists{
+        padding-right: 20px;
+        padding-bottom: 20px;
+        width: 100%;
+       
+      
+}
+
 .task-card{
     
     height: 72px;
@@ -29,10 +37,14 @@
     border: 0px 0px 1px 0px;
     justify-content: space-between;
     display: flex;
+ 
     align-items: center;
     margin-bottom: 10px;
     border-radius: 8px;
     background-color:  #EAECF0;
+ 
+    
+    
 }
 .my-tasks p{
     margin: 0;

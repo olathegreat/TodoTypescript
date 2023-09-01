@@ -15,12 +15,15 @@
 
 .todo-main{
   display: flex;
-  width: 100vw;
-  flex-wrap: wrap;
+  
+  gap:77px;
+ 
+
 }
 .todo-main aside{
   margin-top: 50px;
 }
+
 
 .react-calendar {
   padding: 20px;
@@ -28,6 +31,7 @@
   height: 444px;
   border: 1px solid gray;
   border: none;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.344);
   border-radius: 8px;
   color: rgb(5, 5, 5);
 }
@@ -46,7 +50,10 @@
   background-color: #3f5bf6;
   color: #fff;
   text-decoration: none;
-  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 element.style {
   flex: none;
@@ -57,25 +64,16 @@ element.style {
 .react-calendar__tile {
  
   width: 40px;
-  height: 40px;
+  height: 50px;
   
 
   
 }
 
-.react-calendar__month-view__days__day--weekend abbr {
-  text-decoration: none;
-}
 
-.react-calendar__month-view__days__day abbr {
-  text-decoration: none;
-}
-
-.react-calendar__month-view__weekdays{
-  text-decoration: none;
-}
 abbr[title] {
   text-decoration: none;
+  
 }
 .react-calendar__tile {
 
@@ -84,6 +82,21 @@ abbr[title] {
   line-height: 16px;
 }
 
+
+.section-main-left{
+  flex: 2;
+  
+  box-shadow: 1px 1px 1px  rgba(128, 128, 128, 0.364);
+ 
+}
+hr{
+  opacity: .5;
+  margin-left: 54px;
+}
+aside{
+  flex: 1;
+  
+}
 
 @media screen and (max-width: 450px) {
   .todo-main{

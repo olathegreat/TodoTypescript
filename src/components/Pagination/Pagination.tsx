@@ -14,35 +14,72 @@ const Pagination: React.FC<PaginationProps> = ({
   paginate,
   currentPage,
 }) => {
-  const pageNumbers = [];
+  const pageNumbers:number[] = [];
+  const maxPagesToShow = 3; // Maximum number of pages to show before and after ellipsis
 
   for (let i = 1; i <= Math.ceil(totalTodos / todosPerPage); i++) {
     pageNumbers.push(i);
   }
 
-  return (
-    <div className="pagination">
-      <button>
+  const renderPageNumbers = () => {
+    if (pageNumbers.length <= maxPagesToShow * 2 + 1) {
+      // If there are fewer pages than the maximum to show, display all pages
+      return pageNumbers.map((number) => (
+        <button
+          key={number}
+          onClick={() => paginate(number)}
+          className={currentPage === number ? "active" : ""}
+        >
+          {number}
+        </button>
+      ));
+    } else {
+      // Display the first three pages, ellipsis, last three pages
+      const startPages = pageNumbers.slice(0, maxPagesToShow);
+      const endPages = pageNumbers.slice(-maxPagesToShow);
 
-        <img src="/images/previous.png" alt="plus-button" />
-        <span>Previous</span>
-        
-      </button>
-
-      <div className="pagenumbers">
-        {pageNumbers.map((number) => (
-          <span key={number}>
+      return (
+        <>
+          {startPages.map((number) => (
             <button
+              key={number}
               onClick={() => paginate(number)}
               className={currentPage === number ? "active" : ""}
             >
               {number}
             </button>
-          </span>
-        ))}
-      </div>
+          ))}
+          <span className="ellipsis">...</span>
+          {endPages.map((number) => (
+            <button
+              key={number}
+              onClick={() => paginate(number)}
+              className={currentPage === number ? "active" : ""}
+            >
+              {number}
+            </button>
+          ))}
+        </>
+      );
+    }
+  };
 
-      <button>
+  return (
+    <div className="pagination">
+      <button
+        onClick={() => paginate(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        <img src="/images/previous.png" alt="plus-button" />
+        <span>Previous</span>
+      </button>
+
+      <div className="pagenumbers">{renderPageNumbers()}</div>
+
+      <button
+        onClick={() => paginate(currentPage + 1)}
+        disabled={currentPage === Math.ceil(totalTodos / todosPerPage)}
+      >
         <span>Next</span>
         <img src="/images/next.png" alt="plus-button" />
       </button>

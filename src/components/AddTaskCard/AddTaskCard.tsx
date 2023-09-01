@@ -33,30 +33,21 @@ const AddTaskCard: React.FC<CallToActionProps> = ({ handleAddTodo,cardDisplaySet
 
   const submitNewTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(newTodo.title !== ""){
-    
-        
-      
-        handleAddTodo(newTodo);
+    if (newTodo.title !== "") {
+      handleAddTodo(newTodo);
+      setNewTodo({ ...newTodo, title: "", id: newTodo.id + 1 });
+    } else {
+      alert("Type in a todo");
+    }
+  };
 
-
-        
-      
-    
-      }else{
-        alert("type in a todo")
-      }
-
-      setNewTodo({...newTodo, title:"", id:newTodo.id + 1 })
-
-  }
 
   return (
     <div className="add-task">
       <form onSubmit={(e)=>submitNewTodo(e)}>
         <div className="task-header">
           <h4>Add Task</h4>
-          <img src="/images/close.png" alt="cancel" className="cancel-image" />
+          <img onClick={()=>cardDisplaySetter("calendar")} src="/images/close.png" alt="cancel" className="cancel-image" />
         </div>
 
         <textarea

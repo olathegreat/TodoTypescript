@@ -2,12 +2,13 @@
     
         margin-top: 24px;
         margin-left: 30px;
-        margin-right: 30px;
+        
         margin-bottom: 24px;
         padding-left: 32px;
-        padding-right: 32px;
+      
         display: flex;
-        width: 842px;
+        
+      
         justify-content: space-between;
     
 }
