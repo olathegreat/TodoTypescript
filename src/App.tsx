@@ -1,24 +1,108 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Nav from './components/Nav/Nav';
 import logo from './logo.svg';
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
+
+import CallToAction from './components/CallToAction/CallToAction';
+import TimeLine from './components/Timeline/TimeLine';
+import MyTasks from './components/MyTasks/MyTasks';
+import Pagination from './components/Pagination/Pagination';
 import './App.css';
 
-function App() {
+interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+const App: React.FC = () => {
+  const [value, onChange] = useState<Value>(new Date());
+
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [todosPerPage] = useState<number>(10);
+
+  useEffect(() => {
+      fetchTodos();
+    }, []);
+  
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
+        setTodos(response.data);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
+      }
+    };
+
+    const handleAddTodo = (newTodo: Todo) => {
+      setTodos([...todos, newTodo]);
+    };
+  
+    const handleEditTodo = (editedTodo: Todo) => {
+      const updatedTodos = todos.map(todo => (todo.id === editedTodo.id ? editedTodo : todo));
+      setTodos(updatedTodos);
+    };
+  
+    const handleDeleteTodo = (todoId: number) => {
+      const updatedTodos = todos.filter(todo => todo.id !== todoId);
+      setTodos(updatedTodos);
+    };
+
+
+     const indexOfLastTodo = currentPage * todosPerPage;
+const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+const currentTodos = todos.slice(indexOfFirstTodo, indexOfLastTodo);
+
+const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+// const paginateNext = (pageNumber: number) => {
+  
+// }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <Nav/>
+
+      {/* call to action section */}
+
+      <CallToAction/>
+
+
+      {/* section for todo tasks */}
+
+
+      <main className='todo-main'>
+        <section>
+          <TimeLine/>
+
+          <MyTasks
+             todos={currentTodos}
+             onEditTodo={handleEditTodo}
+             onDeleteTodo={handleDeleteTodo}
+          />
+                <Pagination
+        todosPerPage={todosPerPage}
+        totalTodos={todos.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
+
+        </section>
+
+        <aside>
+          <Calendar onChange={onChange} value={value} />
+
+        </aside>
+      </main>
+
+      
     </div>
   );
 }

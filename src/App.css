@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
+  max-width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-family: 'Work Sans', sans-serif;
+  color: rgb(5, 5, 5);
+  
+ 
 }
 
-.App-link {
-  color: #61dafb;
+
+
+.todo-main{
+  display: flex;
+  
+ 
+  background-color: red;
+}
+.todo-main aside{
+  margin-top: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.react-calendar {
+  padding: 20px;
+  width: 394px;
+  height: 444px;
+  border: 1px solid gray;
+  border: none;
+  border-radius: 8px;
+  color: rgb(5, 5, 5);
+}
+
+.react-calendar__tile--active {
+  background-color: #3f5bf6;
+  color: #fff;
+  border-radius: 50%;
+}
+
+
+.react-calendar__tile--now {
+  /* background-color: #ff6347; */
+  color: rgb(5, 5, 5);
+  border-radius: 50%;
+}
+
+.react-calendar__tile {
+ 
+  width: 40px;
+  height: 40px;
+ 
+
+  
+}
+
+.react-calendar__month-view__days__day--weekend abbr {
+  text-decoration: none;
+}
+
+.react-calendar__month-view__days__day abbr {
+  text-decoration: none;
+}
+
+.react-calendar__month-view__weekdays{
+  text-decoration: none;
+}
+abbr[title] {
+  text-decoration: none;
+}
+.react-calendar__tile {
+  max-width: 100%;
+  padding: 10px;
+  background: none;
+  text-align: center;
+  line-height: 16px;
 }

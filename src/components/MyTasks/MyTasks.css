@@ -1,0 +1,50 @@
+.my-tasks{
+    margin-top: 24px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+.my-tasks h3{
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.my-tasks h4{
+    margin: 0;
+    margin-bottom: 5px;
+
+}
+.task-card{
+    
+    height: 72px;
+    padding: 16px 24px 16px 24px;
+    border: 0px 0px 1px 0px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color:  #EAECF0;
+}
+.my-tasks p{
+    margin: 0;
+}
+.marked-class{
+    color: grey;
+}
+.checkbox{
+    width: 20px;
+    height: 20px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+}
+.card-left{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
