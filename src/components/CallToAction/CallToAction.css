@@ -1,10 +1,10 @@
 .call-to-action{
   
-    margin-left: 30px;
-    margin-right: 30px;
+   
+    
     display: flex;
-    padding-left: 32px;
-    padding-right: 32px;
+   
+    
     justify-content: space-between;
     height: 66px;
     margin-top: 24px;
@@ -47,7 +47,7 @@
       padding-left: 0;
       margin-left: 16px;
       padding-right: 0;
-      margin-right: 16px;
+      margin-right: 0;
       margin-top: 0;
     }
     

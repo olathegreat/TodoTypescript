@@ -1,9 +1,9 @@
 .my-tasks{
     margin-top: 24px;
-    margin-left: 30px;
+    
     margin-right: 30px;
     margin-bottom: 24px;
-    padding-left: 32px;
+    
     
 }
 .my-tasks h3{
@@ -17,15 +17,16 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 50vw;
+    width: 250px;
 
 
 
 }
 .tasklists{
-        padding-right: 20px;
+       
         padding-bottom: 20px;
-        width: 100%;
+        
+  
        
       
 }
@@ -37,7 +38,6 @@
     border: 0px 0px 1px 0px;
     justify-content: space-between;
     display: flex;
- 
     align-items: center;
     margin-bottom: 10px;
     border-radius: 8px;
@@ -82,5 +82,7 @@
       margin-right: 16px;
     
     }
-    
+    .my-tasks h4{
+        width: 150px;
+    }
   }

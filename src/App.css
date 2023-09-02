@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 .App{
-  max-width: 100vw;
+  
   display: flex;
   flex-direction: column;
   font-family: 'Work Sans', sans-serif;
@@ -15,6 +15,7 @@
 
 .todo-main{
   display: flex;
+  
   
   gap:77px;
  
@@ -84,14 +85,14 @@ abbr[title] {
 
 
 .section-main-left{
-  flex: 2;
+  max-width: 900px;
   
   box-shadow: 1px 1px 1px  rgba(128, 128, 128, 0.364);
  
 }
 hr{
   opacity: .5;
-  margin-left: 54px;
+ 
 }
 aside{
   flex: 1;
@@ -138,10 +139,10 @@ aside{
     align-items: center;
     height: 48px;
     border-radius: 8px;
-    width: 90%;
+  
     padding: 16px 16px;
-    margin-right: 16px;
-    margin-left: 16px;
+   
+  
     margin-bottom: 32px;
 
     position: fixed;
@@ -150,10 +151,13 @@ aside{
     right: 0;
     z-index: 99;
    
+   
   }
   .App{
     position: relative;
     font-size: 14px;
+    overflow-x: hidden;
+    padding: 10px;
   }
   .mobile-aside{
     display: block;
