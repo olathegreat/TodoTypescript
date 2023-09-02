@@ -42,7 +42,7 @@ const EditTaskCard: React.FC<CallToActionProps> = ({todoClicked, handleEditTodo,
         <div className="task-header">
           <h4>Edit Task</h4>
 
-          <img src="/images/close.png" alt="cancel" className="cancel-image"/>
+          <img onClick={()=>cardDisplaySetter("calendar")} src="/images/close.png" alt="cancel" className="cancel-image"/>
         </div>
 
         <textarea value={editedTodo.title} onChange={(e)=>setEditedTodo({...editedTodo, title:e.target.value})}></textarea>

@@ -47,22 +47,25 @@
   }
 
   @media screen and (max-width: 450px) {
-    /* .call-to-action button{
-      display: none;
-    } */
+    
     .timeline{
       padding-left: 0;
-      margin-left: 32px;
+      margin-left: 16px;
       padding-right: 0;
-      margin-right: 32px;
+      margin-right: 16px;
+      margin-top: 0;
       
     }
     .days-flex{
       width: 80vw;
       overflow: scroll;
       justify-content: start;
+      gap: 10px;
       
       
+    }
+    .date h3{
+      margin-top: 0;
     }
     
   }

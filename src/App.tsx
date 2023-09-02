@@ -9,10 +9,12 @@ import CallToAction from "./components/CallToAction/CallToAction";
 import TimeLine from "./components/Timeline/TimeLine";
 import MyTasks from "./components/MyTasks/MyTasks";
 import Pagination from "./components/Pagination/Pagination";
-import "./App.css";
+
 import AddTaskCard from "./components/AddTaskCard/AddTaskCard";
 import EditTaskCard from "./components/EditTask/EditTaskCard";
 import DeleteTaskCard from "./components/DeleteTask/DeleteTaskCard";
+
+import "./App.css";
 
 const LOCAL_STORAGE_KEY = "react-todo-list-todos";
 
@@ -92,7 +94,6 @@ const App: React.FC = () => {
   const indexOfLastTodo = currentPage * todosPerPage;
   const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
   const currentTodos = todos.slice(indexOfFirstTodo, indexOfLastTodo);
-  console.log(currentTodos);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -105,6 +106,56 @@ const App: React.FC = () => {
       <CallToAction cardDisplaySetter={cardDisplaySetter} />
 
       {/* section for todo tasks */}
+      {cardDisplay === "calendar" && (
+        <button
+          className="mobile-add-task"
+          onClick={() => cardDisplaySetter("add")}
+        >
+          <span>Input task</span>
+          <img src="/images/mic.png" alt="microphone" />
+        </button>
+      )}
+
+      <aside className="">
+       
+
+        {cardDisplay === "add" && (
+          <div className="mobile-aside">
+            <AddTaskCard
+            cardDisplaySetter={cardDisplaySetter}
+            handleAddTodo={handleAddTodo}
+            todos={todos}
+          />
+
+          </div>
+          
+        )}
+
+        {cardDisplay === "edit" && (
+          <div className="mobile-aside">
+             <EditTaskCard
+            cardDisplaySetter={cardDisplaySetter}
+            handleEditTodo={handleEditTodo}
+            todoClicked={todoClicked}
+          />
+
+          </div>
+         
+        )}
+
+        {cardDisplay === "delete" && (
+
+          <div className="mobile-aside">
+             <DeleteTaskCard
+            cardDisplaySetter={cardDisplaySetter}
+            todoClicked={todoClicked}
+            handleDeleteTodo={handleDeleteTodo}
+          />
+
+          </div>
+         
+        )}
+      </aside>
 
       <main className="todo-main">
         <section className="section-main-left">
@@ -127,7 +178,7 @@ const App: React.FC = () => {
           />
         </section>
 
-        <aside>
+        <aside className="large-screen-aside">
           {cardDisplay === "calendar" && (
             <Calendar onChange={onChange} value={value} />
           )}

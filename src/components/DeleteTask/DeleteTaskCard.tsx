@@ -38,7 +38,7 @@ const DeleteTaskCard: React.FC<CallToActionProps> = ({todoClicked, cardDisplaySe
         <div className="delete-header">
           
 
-          <img src="/images/close.png" alt="cancel" className="cancel-image"/>
+          <img onClick={()=>cardDisplaySetter("calendar")} src="/images/close.png" alt="cancel" className="cancel-image"/>
         </div>
 
         <div className="task-details">
